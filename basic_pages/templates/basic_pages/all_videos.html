@@ -1,0 +1,40 @@
+{% extends 'users/base.html' %}
+{% load static %}
+
+{% block title %}Все видео{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'basic_pages/css/video_cell.css' %}" />
+{% endblock %}
+
+{% block content %}
+    <div id="content_sec" >
+        <div class="video_place">
+            <h2>Все видео</h2>
+            {% if videos|length >  0 %}
+                <div class="video-grid">
+                    {% for i in videos %}
+                        <div class="video-cell">
+                            <div class="video-preview">
+                              <a href="{{ i.video.url }}">
+                                <img src="{{ i.video.preview }}" alt="{{ i.video.title }}">
+                              </a>
+                            </div>
+                          <div class="video-details">
+                              <h3 class="video-title"><a href="{{ i.video.url }}">{{ i.video.title }}</a></h3>
+                              <span><a href="{{ i.author.url }}">{{ i.author.name }}</a></span>
+                                &middot;
+                              <span>{{ i.video.views_count }} просмотров</span>
+                                &middot;
+                              <span>{{ i.video.date }}</span>
+                          </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <h2>Здесь ещё нет видео</h2>
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}

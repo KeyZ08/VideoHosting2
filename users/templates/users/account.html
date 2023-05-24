@@ -1,0 +1,156 @@
+{% extends "users/base.html" %}
+{% load static %}
+
+{% block title %}
+    User Profile
+{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'basic_pages/css/video_cell.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'users/css/user_account.css' %}" />
+    <style>
+        #spin{
+            display: none;
+            flex-direction: column;
+            text-align: center;
+        }
+        #spin div{
+            display: flex;
+            flex-direction: column;
+        }
+        #spin img{
+            height: 50px;
+            width: 50px;
+            margin: auto;
+        }
+        #wait_message{
+            display: none;
+        }
+
+        .errorlist, .success{
+        }
+        .errorlist li{
+            color: red;
+            padding: 10px;
+          border-radius: 3px;
+          width: 100%;
+          box-sizing: border-box;
+        }
+        .success li{
+            color:green;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="content-sec">
+        <div class="profile_info">
+            <div class="avatar_block">
+                <div id="avatarForm">
+                    <div class="avatar_block_image">
+                        <img src="{{ avatar }}" alt="Avatar" id="avatar_img">
+                    </div>
+                    <div class="avatar_buttons">
+                        <button class="change-avatar-btn" id="change-avatar-btn" type="button">Изменить</button>
+                        <button class="change-avatar-btn" id="reset-avatar-btn" type="button">Сбросить</button>
+                        <button class="change-avatar-btn" id="save-avatar-btn" type="button">Сохранить</button>
+                    </div>
+                </div>
+            </div>
+            <div class="info">
+                <p>Username: {{ username }} <a href="{% url "logout" %}"><button>Выйти</button></a></p>
+                <p>Дата регистрации: {{ date_joined }}</p>
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit">Сохранить изменения</button>
+                </form>
+            </div>
+        </div>
+
+
+
+        <div class="video_place">
+            <h1>Мои видео</h1>
+            <div class="video_menu">
+                <button class="video_menu_btn" id="video_create" type="button">Загрузить</button>
+            </div>
+
+
+            {% if h_videos|length > 0 %}
+                <h1>Неопубликованные видео</h1>
+                <div class="video-grid">
+                    {% for i in h_videos %}
+                        <div class="video-cell">
+                            <div class="video-preview">
+                              <a href="/videos/{{ i.id_video }}/change/">
+                                <img src="{{ i.preview }}" alt="{{ i.title }}">
+                              </a>
+                            </div>
+                          <div class="video-details">
+                              <h3 class="video-title"><a href="/videos/{{ i.id_video }}/change/">{{ i.title }}</a></h3>
+                            <span>{{ i.video.date }}</span>
+                          </div>
+                            <div class="edit-button">
+                              <a href="/videos/{{ i.id_video }}/change/">
+                                  <button>Edit</button>
+                              </a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            {% if p_videos|length >  0 %}
+                <h1>Опубликованные видео</h1>
+                <div class="video-grid">
+                    {% for i in p_videos %}
+                        <div class="video-cell">
+                            <div class="video-preview">
+                              <a href="{{ i.url }}">
+                                <img src="{{ i.preview }}" alt="{{ i.title }}">
+                              </a>
+                            </div>
+                          <div class="video-details">
+                              <h3 class="video-title"><a href="{{ i.url }}">{{ i.title }}</a></h3>
+                              <span>{{ i.views_count }} просмотров</span>
+                                &middot;
+                              <span>{{ i.date }}</span>
+                          </div>
+                            <div class="edit-button">
+                              <a href="/videos/{{ i.id_video }}/change/">
+                                  <button>Edit</button>
+                              </a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+        <div id="upload-modal" style="display:none;">
+          <form method="post" enctype="multipart/form-data" id="upload-form">
+            {% csrf_token %}
+              <label class="custom-file-upload">
+                   Выберите файл
+              <input type="file" name="video" id="video-input" accept="video/*" required>
+              </label>
+              <div id="spin">
+                  <p id="wait_message">Идет загрузка данных на сервер, пожалуйста, подождите.</p>
+                  <div>
+                    <p id="uploaded"></p>
+                    <p><progress max="100" value="0" id="progress"></progress></p>
+                  </div>
+                  <img src="{% static "users/img/loadingImage.gif" %}" alt="Загрузка" id="loadingImage">
+              </div>
+              <p id="result"></p>
+              <button type="button" id="upload-button">Загрузить</button>
+          </form>
+        </div>
+
+    </div>
+    <script src="{% static 'users/js/jquery-364.js' %}"></script>
+    <script src="{% static 'users/js/uservideo_upload.js' %}"></script>
+    <script src="{% static 'users/js/user_account.js' %}"></script>
+
+{% endblock %}

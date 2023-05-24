@@ -1,0 +1,110 @@
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f2f2f2;
+}
+
+form {
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+
+input[type="text"], input[type="file"] {
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #f2f2f2;
+    width: 100%;
+    box-sizing: border-box;
+    border: solid 1px blue;
+    border-radius: 5px;
+    font-size: medium;
+    color: black;
+}
+
+#upload_btn {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #1c1c1c;
+    color: #fff;
+    cursor: pointer;
+}
+
+#video_delete{
+    margin: 10px 0;
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+    background-color: #ff9999;
+    color: #fff;
+    cursor: pointer;
+}
+
+#upload_btn:hover {
+    background-color: #2f2f2f;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.form-video-preview {
+    position: relative;
+    margin-bottom: 20px;
+    text-align: center;
+    width: 384px;
+    height: 216px;
+    overflow: hidden;
+    display: flex;
+}
+
+.form-video-preview img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    display: flex;
+}
+textarea {
+    display: block;
+    margin-bottom: 20px;
+    width: 100%;
+    border: 1px solid blue;
+    border-radius: 5px;
+    font-size: 16px;
+    resize: vertical;
+    height: 100px;
+}
+#spin{
+    display: none;
+    margin: 15px;
+    height: 50px;
+}
+#spin img{
+    height: 50px;
+    float: right;
+}
+#wait_message{
+    display: none;
+}
+.exception{
+    color: red;
+}
+form p{
+    padding: 0;
+    margin: 0;
+}
+video{
+    width: 95%;
+    margin:10px;
+}

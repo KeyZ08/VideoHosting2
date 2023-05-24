@@ -1,0 +1,77 @@
+{% extends "users/base.html" %}
+{% load static %}
+
+{% block title %}
+    Загрузка видео
+{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'users/css/video_change.css' %}" />
+    <style>
+        #spin{
+            display: none;
+            flex-direction: column;
+            text-align: center;
+        }
+        #spin div{
+            display: flex;
+            flex-direction: column;
+        }
+        #spin img{
+            height: 50px;
+            width: 50px;
+            margin: auto;
+        }
+        #wait_message{
+            display: none;
+        }
+
+        .errorlist, .success{
+        }
+        .errorlist li{
+            color: red;
+            padding: 10px;
+          border-radius: 3px;
+          width: 100%;
+          box-sizing: border-box;
+        }
+        .success li{
+            color:green;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="form-container">
+        <h1>Изменение видео</h1>
+
+        <form method="POST" enctype="multipart/form-data">
+            <label for="id_video">ID видео: <span id="id_video">{{ id_video }}</span></label>
+
+            <video src="{{ video_url}}" controls></video>
+            <label for="video-title">Название видео:</label>
+            <input type="text" name="title" id="video-title" required maxlength="100" value="{{ title }}">
+            <label for="video-description">Описание:</label>
+            <textarea name="description" id="video-description" required maxlength="3000">{{ description }}</textarea>
+            <label for="video-preview">Превью видео:</label>
+            <input type="file" name="thumbnail" id="video-thumbnail" accept="image/*" >
+            <div class="form-video-preview">
+                <img src="{{ preview }}" alt="Превью видео" id="preview" height="150px">
+            </div>
+            <label for="published">Опубликовать</label>
+            <input type="checkbox" id="published" {% if published is True %}checked="true"{% endif %}>
+            <p id="wait_message">Идет загрузка данных на сервер, пожалуйста, подождите.</p>
+            <div id="spin">
+                <div>
+                <p id="uploaded"></p>
+                <p><progress max="100" value="0" id="progress"></progress></p>
+                </div>
+                <img src="{% static "users/img/loadingImage.gif" %}" alt="Загрузка" id="loadingImage">
+            </div>
+            <p id="result"></p>
+            <input type="button" id="upload_btn" value="Сохранить изменения">
+            <input type="button" id="video_delete" value="Удалить">
+        </form>
+    </div>
+    <script src="{% static 'users/js/uservideo_change.js' %}" ></script>
+{% endblock %}

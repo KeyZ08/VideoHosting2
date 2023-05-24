@@ -1,0 +1,36 @@
+{% extends 'users/base.html' %}
+{% load static %}
+
+{% block title %}История просмотров{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'basic_pages/css/video_cell.css' %}" />
+{% endblock %}
+
+{% block content %}
+    <div id="content_sec" >
+        <h1>История просмотров</h1>
+        <div class="video-grid">
+        {% if videos|length > 0 %}
+            {% for i in videos %}
+                <div class="video-cell">
+                    <div class="video-preview">
+                      <a href="{{ i.video.url }}">
+                        <img src="{{ i.video.preview }}" alt="{{ i.video.title }}">
+                      </a>
+                    </div>
+                  <div class="video-details">
+                      <h3 class="video-title"><a href="{{ i.video.url }}">{{ i.video.title }}</a></h3>
+                    <span><a href="{{ i.author.url }}">{{ i.author.name }}</a></span>
+                      &middot;
+                    <span>просмотрено {{ i.video.viewing_date }}</span>
+                  </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <h2>Вы ещё не посмотрели ни одного видео</h2>
+        {% endif %}
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,91 @@
+{% extends 'users/base.html' %}
+{% load static %}
+
+{% block title %}{{ video.title }}{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'basic_pages/css/video_watch.css' %}" />
+{% endblock %}
+
+{% block content %}
+    <div id="content_sec">
+        <div class="video-container">
+            <div class="video-player">
+              <video src="{{ video.video }}" controls></video>
+            </div>
+            <div class="video-details">
+                <div style="display: none">
+                    <span id="id_video">{{ video.id_video }}</span>
+                </div>
+                <div class="info">
+                    <a href="{{ author.url }}">
+                     <div class="author-info">
+                      <div class="avatar">
+                          <img src="{{ author.avatar }}" alt="Аватар">
+                      </div>
+                      <div class="author-name">
+                        <h4>{{ author.name }}</h4>
+                      </div>
+                     </div>
+                    </a>
+                  <div class="rating-buttons">
+                    <span class="views">Просмотров: {{ video.views_count }}</span>
+                        <button id="like-button" class="{% if like %}liked{% endif %}">
+                          <span class="icon">👍</span>
+                          <span id="like-count" class="count">{{ video.likes_count }}</span>
+                        </button>
+                        <button id="dislike-button" class="{% if dislike %}liked{% endif %}">
+                          <span class="icon">👎</span>
+                          <span id="dislike-count" class="count">{{ video.dislikes_count }}</span>
+                        </button>
+                  </div>
+                </div>
+              <h1>{{ video.title }}</h1>
+              <p class="video-description">{{ video.description }}</p>
+
+
+
+              <div class="comment-section">
+                  <h2>Комментарии:</h2>
+                    {% if user.is_authenticated %}
+                        <div class="comment-form">
+                          <h3>Оставить комментарий</h3>
+                          <form method="POST" action="{% url 'add-comment' video.id_video %}">
+                            {% csrf_token %}
+                            <div>
+                              <label for="id_text">Оставьте комментарий:</label>
+                              <textarea id="id_text" name="text" maxlength="1000" required></textarea>
+                            </div>
+                            <button type="submit">Опубликовать</button>
+                          </form>
+                        </div>
+                    {% else %}
+                    <p>Чтобы оставить комментарий, вам необходимо <a href="{% url 'login' %}">войти</a>.</p>
+                    {% endif %}
+
+                  <ul class="comment-list">
+                    {% for c in comments %}
+                        <li id="comment-{{c.comment.comment_id}}">
+                          <div class="comment-meta">
+                            <span class="author"><a href="{{ c.author.url }}">{{ c.author.name }}</a></span>
+                            <span class="date">{{ c.comment.date}}</span>
+                          </div>
+                          <div class="comment-content">{{ c.comment.text }}</div>
+                            {% if user.is_authenticated %}
+                                {% if c.author.username == user.username %}
+                                    <button class="btn-delete-comment" data-comment-id="{{ c.comment.comment_id }}">Удалить</button>
+                                {% endif %}
+                            {% endif %}
+                        </li>
+                    {% empty %}
+                      <p>К этому видео еще нет комментариев.</p>
+                    {% endfor %}
+                  </ul>
+              </div>
+            </div>
+        </div>
+  </div>
+
+  <script src="{% static 'basic_pages/js/like_dislike.js' %}"></script>
+  <script src="{% static 'basic_pages/js/comments.js' %}"></script>
+{% endblock %}

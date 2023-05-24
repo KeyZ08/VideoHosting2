@@ -1,0 +1,15 @@
+version: "3.9"
+
+services:
+  django:
+    image: keyz8/video-hosting:latest
+    container_name: django_test_container
+    env_file:
+      - vk_cloud.env
+    command: sh -c "python manage.py makemigrations &&
+                    python manage.py migrate &&
+                    python manage.py runserver 0.0.0.0:8000 --insecure"
+    ports:
+      - "80:8000"
+    environment:
+      HOST: "http://158.160.57.227"

@@ -1,0 +1,116 @@
+button{
+    padding: 10px;
+}
+.content-sec h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+.content-sec p {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+#avatarForm {
+  display: flex;
+  width: 100%;
+}
+p input{
+    width: 300px;
+    height: 30px;
+    font-size: 18px;
+    border: solid 1px gray;
+    border-radius: 5px;
+}
+.avatar_block img{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  display: flex;
+  background-color: whitesmoke;
+}
+.change-avatar-btn {
+  padding: 10px 20px;
+  margin-bottom: 3px;
+  background-color: rgba(128, 128, 128, 0.3);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  width: 100%;
+}
+.change-avatar-btn:hover {
+  background-color: rgba(128, 128, 128, 1);
+}
+.avatar_buttons{
+  display: flex;
+  flex-direction: column;
+  width: 100px;
+  background-color: dimgray;
+  padding: 5px;
+  border-radius: 3px;
+}
+.profile_info{
+    display: inline-flex;
+}
+.avatar_block {
+  background-color: lightgray;
+  padding: 2px;
+  border-radius: 3px;
+  width: 280px;
+  height: 170px;
+  display: flex;
+}
+.info{
+    margin-left: 20px;
+}
+.avatar_block_image{
+    width: 100%;
+    height: 100%;
+}
+#upload-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+}
+
+#upload-modal form {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  max-width: 600px;
+  width: 80%;
+}
+.custom-file-upload {
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1.5;
+  color: white;
+  background-color: #9d9d9d;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.custom-file-upload:hover {
+  background-color: #626262;
+}
+
+.custom-file-upload:active {
+  background-color: #343434;
+}
+
+.custom-file-upload input[type="file"]{
+    color: white;
+}

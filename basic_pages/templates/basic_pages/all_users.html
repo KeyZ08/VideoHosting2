@@ -1,0 +1,36 @@
+{% extends 'users/base.html' %}
+{% load static %}
+
+{% block title %}Все каналы{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'basic_pages/css/video_cell.css' %}" />
+{% endblock %}
+
+{% block content %}
+    <div id="content_sec" >
+        <div class="video_place">
+            <h2>Все каналы</h2>
+            {% if users|length >  0 %}
+                <div class="video-grid">
+                    {% for i in users %}
+                        <div class="video-cell">
+                            <div class="video-preview">
+                              <a href="{{ i.url }}">
+                                <img src="{{ i.avatar }}" alt="{{ i.username }}">
+                              </a>
+                            </div>
+                          <div class="video-details">
+                              <h3 class="video-title"><a href="{{ i.url }}">{{ i.name }}</a></h3>
+                              <span>Кол. видео: {{ i.video_count }}</span>
+                          </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <h2>Ещё не создано ни одного канала.</h2>
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}

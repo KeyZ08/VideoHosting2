@@ -1,0 +1,2 @@
+class DisplayedException(BaseException):
+    pass

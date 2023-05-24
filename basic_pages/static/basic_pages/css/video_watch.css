@@ -1,0 +1,289 @@
+.video-details {
+  width: 100%;
+  padding: 5px 5% 0px 5%;
+  box-sizing: border-box;
+}
+
+h1, h2, p {
+  margin: 0;
+}
+
+h1 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+p {
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 10px;
+  color: #666;
+}
+
+.video-player {
+  margin:auto;
+  width: 80%;
+  margin-bottom: 5px;
+}
+
+video{
+  width: 100%;
+  height: 100%;
+}
+
+.likes-dislikes {
+  margin-top: 20px;
+}
+
+.like-button, .dislike-button {
+  background-color: #f00;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  margin-right: 10px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.comments-section {
+  margin-top: 20px;
+}
+
+.comments-section h2 {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.comment {
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+}
+
+.comment p:first-child {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.comment p:last-child {
+  margin: 0;
+  color: #666;
+}
+
+.comment:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.video-description {
+  max-height: 100px;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  position: relative;
+}
+
+.video-description::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  height: 50px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #fdfdfd);
+  pointer-events: none;
+  transition: background 0.3s ease;
+}
+
+.video-description:hover {
+  max-height: none;
+}
+
+.video-description:hover::after {
+  background: none;
+}
+
+.author-info {
+  display: flex;
+  align-items: center;
+  border-radius: 55px;
+  background-color: #c4c4c4;
+  padding: 5px 10px 5px 5px;
+}
+
+.info {
+  display: flex;
+  align-items: center;
+  background-color: #dedede;
+  border-radius: 55px;
+  margin-bottom: 10px;
+}
+
+.avatar {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.author-name {
+  margin-left: 10px;
+  padding: 0 10px 0 10px;
+}
+
+.author-name a {
+  text-decoration: none;
+  color: #333;
+}
+
+.rating-buttons {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  margin-right: 30px;
+}
+
+.views {
+  margin-right: 10px;
+}
+
+.rating-buttons {
+  display: flex;
+  align-items: center;
+}
+
+#like-button,
+#dislike-button {
+  padding: 5px 10px;
+  margin-left: 5px;
+  display: flex;
+  align-items: center;
+  background-color: #ff3939;
+  border: none;
+  cursor: pointer;
+  border-radius: 25px;
+  height: 35px;
+}
+
+.icon {
+  margin-right: 5px;
+}
+
+.count {
+  font-size: 12px;
+  color: #0a0a3a;
+}
+
+.liked{
+    background-color: green !important;
+}
+
+
+
+.comment-section {
+  margin-top: 100px;
+}
+
+.comment-list {
+  list-style: none;
+  padding: 0;
+  margin: 10px;
+  color: black;
+}
+
+.comment-list li {
+  border-bottom: 1px solid #eee;
+  margin-bottom: 10px;
+  padding: 10px 10px 10px;
+  border-radius: 5px;
+  background-color: #afafaf;
+}
+
+.comment-list a{
+  color: black;
+}
+
+.comment-meta {
+  font-size: 12px;
+  color: #999;
+  margin-bottom: 10px;
+}
+
+.comment-meta .author {
+  font-size: 14px;
+  font-weight: 600;
+  margin-right: 20px;
+}
+
+.comment-meta .date{
+  color: black;
+}
+
+.comment-content {
+  font-size: 16px;
+  line-height: 1.5;
+  padding-left: 10px;
+  height: auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+}
+
+.comment-form {
+  margin-top: 40px;
+}
+
+.comment-form h3 {
+  margin-bottom: 20px;
+}
+
+.comment-form textarea {
+  width: 100%;
+  height: 120px;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: none;
+}
+
+.comment-form button {
+  background-color: #f00;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.comment-form button:hover {
+  background-color: #d00;
+}
+
+.btn-delete-comment {
+  margin-top: 10px;
+  padding: 8px 12px;
+  font-size: 14px;
+  background-color: #e74c3c;
+  color: #fff;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-delete-comment:hover {
+  background-color: #c0392b;
+}
+
+

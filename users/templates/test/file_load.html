@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>File Load to S3</title>
+    <style>
+        .alertStatusOk {
+          padding: 15px;
+          border: 1px solid #d6e9c6;
+          border-radius: 4px;
+          color: #3c763d;
+          background-color: #dff0d8;
+          margin: 15px;
+        }
+        .alertStatusError {
+          padding: 15px;
+          border: 1px solid #2d1919;
+          border-radius: 4px;
+          color: #210d0d;
+          background-color: #ff9a9a;
+          margin: 15px;
+        }
+        #spin{
+            display: none;
+            margin: 15px;
+            height: 50px;
+        }
+        #spin img{
+            height: 200px;
+        }
+        #wait_message{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <p><a href="{{ url }}">Видео</a></p>
+    <p><a href="{{ url1 }}">Картинка</a></p>
+    <p><a href="{{ url2 }}">Текст</a></p>
+    <hr>
+    <form method="post" enctype="multipart/form-data" id="uploadForm">
+        {% csrf_token %}
+        <input type="file" name="file" required>
+        <input type="submit" name="submit" value="Загрузить">
+    </form>
+    <p id="wait_message">Идет загрузка данных на сервер, пожалуйста, подождите.</p>
+    <div id="spin">
+        <p id="uploaded"></p>
+        <p><progress max="100" value="0" id="progress"></progress></p>
+        <img src="{% static "users/img/loadingImage.gif" %}" alt="Загрузка" id="loadingImage">
+    </div>
+    <p id="result"></p>
+
+    <script src="{% static 'users/js/upload_file.js' %}"></script>
+    <p>{{ answer }}</p>
+</body>
+</html>

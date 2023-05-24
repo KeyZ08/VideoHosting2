@@ -1,0 +1,33 @@
+{% extends 'users/auth.html' %}
+
+{% block content %}
+    <h1>Register</h1>
+    <hr>
+
+    {% if form.errors %}
+        <p>{{ form.errors.error }}</p>
+    {% endif %}
+
+    <form action="{% url 'register' %}" method="post">
+    {% csrf_token %}
+        <p>{{ form.username.label }}:&emsp;{{ form.username }}&emsp;{{ form.username.help_text }}</p>
+        <p>{{ form.email.label }}:&emsp;{{ form.email }}</p>
+        <p>{{ form.password1.label }}:&emsp;{{ form.password1 }}&emsp;{{ form.password2.label }}:&emsp;{{ form.password2 }}</p>
+        <p>{{ form.password1.help_text }}</p>
+        {% if form.errors %}
+        <ul>
+            Ошибки
+            {% if form.errors.username %}
+                <li>{{ form.errors.username }}</li>
+            {% endif %}
+            {% for i in form.errors.password2  %}
+                <li>{{ i }}</li>
+            {% endfor %}
+            {% for i in form.errors.email  %}
+                <li>{{ i }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    <button type="submit" class="btn btn-success">submit</button>
+    </form>
+{% endblock %}

@@ -1,0 +1,61 @@
+{% load i18n %}
+{% load static %}
+
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>{% block title %}{% endblock %}</title>
+
+    {% block styles %}
+    {% endblock %}
+    <link href="{% static 'basic_pages/css/style.css' %}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="{% static 'basic_pages/css/ddsmoothmenu.css' %}" />
+    <link rel="shortcut icon" type="image/png" href="{% static 'basic_pages/favicon.png' %}">
+
+    {% include 'basic_pages/Style.html' %}
+</head>
+<body>
+	<div id="wrapper_sec">
+    	<!--Masterhead -->
+        <div id="masthead">
+        	<div class="logo"><a href="{% url 'index' %}"><img src="{% static 'basic_pages/img/Sprite-0001.png' %}" width="142" height="87" alt="" /></a></div>
+			<div class="header_rightsec">
+            	<div class="rightsec_1">
+                	<div class="navigation">
+                    	<div id="smoothmenu1" class="ddsmoothmenu">
+                        	<ul>
+                            	<li><a class="home" href="{% url 'index' %}">Home</a></li>
+                            	<li><a href="{% url 'videos' %}">Видео</a></li>
+                                <li><a href="{% url 'accounts' %}">Каналы</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            	<div class="rightsec_2">
+           	        <ul class="toplinks">
+                        {% if user.is_authenticated %}
+                            <li><a href="{% url 'account' %}">Account</a></li>
+                            <li><a href="{% url 'video_history' %}">My History</a></li>
+                        {% else %}
+                            <li><a href="{% url 'login' %}">Login</a></li>
+                            <li><a href="{% url 'register' %}">Register</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+		</div>
+    <!--Content Sec -->
+    {% block content %}
+    {% endblock %}
+    </div>
+    <!-- bottom section-->
+    <div id="bottom_sec">
+        <div id="botbarbg">
+            <div class="innercontainer">
+                <div class="copy">Copyright &copy; 2023 Video Hosting.</div>
+                <div class="powerby">Author: <a href="https://vk.com/kiriazm">Kirill Morozov</a></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
