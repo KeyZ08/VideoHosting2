@@ -1,0 +1,52 @@
+
+Auth service
+
+/login/ 							- GET,POST 	- аутентификация
+/register/ 							- GET,POST 	- регистрация
+
+
+Account service
+
+/account/ 							- GET, POST	- личный кабинет пользователя, изменение данных о канале
+/account/history/						- GET		- страница с историей посещений видео
+/accounts/ 							- GET		- страница со всеми каналами 
+/accounts/<str:username>/					- GET		- страница конкретного канала
+
+Служебные 
+/account/avatar_upload/						- POST 		- загрузка и сохранение нового аватара пользователя
+/account/reset_avatar/						- POST		- сброс аватара до значения по умолчанию
+/account/video_upload/						- POST		- загрузка нового видео
+
+
+Video service
+
+host 								- GET 		- главная страница
+/videos/							- GET 		- страница cо всеми видео на платформе
+/videos/<str:id_video>/ 					- GET 		- страница просмотра видео
+/videos/<str:id_video>/change/					- GET,POST	- изменение данных о видео
+
+Служебные
+/videos/<str:id_video>/delete/					- POST		- удалить видео
+/videos/<str:id_video>/like/					- POST 		- поставить/удалить лайк
+/videos/<str:id_video>/dislike/					- POST 		- поставить/удалить дизлайк
+/videos/<str:id_video>/add-comment/				- POST		- добавить комментарий к видео
+/videos/<str:id_video>/delete-comment/<int:comment_id>/		- POST		- удалить комментарий к видео
+
+
+API
+/echo/ 								- GET,POST 	- при POST возвращает тело запроса, при GET возвращает все заголовки в формате json
+/hello/ 							- GET,POST 	- возвращает "Hello"
+
+
+/api/jsonrpc/							- POST	- принимает json формата jsonrpc и в зависимости от method и params возвращает соответствующие данные
+- обязательно содержат {"jsonrpc": "2.0", "id": `jsonrpc_id`, "method": `method_name`, "params":{`params`}}
+примеры использования:
+	"method": "check_file_valid", "params": {"file": {"size": `size_bytes`, "target": "avatar_image", "name": `file_name_with_file_extension `}} - для проверки корректное ли изображение выбрано в качестве аватара канала
+	"method": "check_file_valid", "params": {"file": {"size": `size_bytes`, "target": "video_preview_image", "name": `file_name_with_file_extension `}} - для проверки корректное ли изображение выбрано в качестве превью видео
+	"method": "check_file_valid", "params": {"file": {"size": `size_bytes`, "target": "video", "name": `file_name_with_file_extension `}} } - для проверки корректно ли загружаемое видео
+	"method": "get_video", "params": {"id_video": `id_video`} - возвращает информацию о данном видео
+	"method": "get_videos", "params": {"username": `username`} - возращает информацию о всех роликах на данном канале
+	"method": "get_comments", "params": {"id_video": `id_video`} - возращает информацию о всех комментариях на данном видео
+
+
+	
