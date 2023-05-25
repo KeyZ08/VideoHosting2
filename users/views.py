@@ -242,7 +242,7 @@ def video_delete(request, id_video):
         try:
             video = Video.objects.get(username=request.user, id_video=id_video)
             video.delete()
-            return JsonResponse(status=403, data=jsonrpc_result({"status": 'ok', "next_url": "/account/"}))
+            return JsonResponse(status=200, data=jsonrpc_result({"status": 'ok', "next_url": "/account/"}))
         except:
             return JsonResponse(status=403,
                                 data=jsonrpc_error("Несоответствие владельца, либо видео несуществует", 403))

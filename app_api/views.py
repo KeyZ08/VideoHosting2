@@ -57,6 +57,8 @@ def get_videos(request, *args, **kwargs):
     try:
         videos = JsonUnpacker(get_p_videos(kwargs["username"]))
         return videos
+    except DisplayedException as e:
+        raise JSONRPCDispatchException(code=403, message=e.__str__())
     except Exception as e:
         print(e)
         raise JSONRPCDispatchException(code=403, message="Видео не найдены.")
@@ -67,6 +69,7 @@ def get_comments(request, *args, **kwargs):
     try:
         videos = JsonUnpacker(_get_comments(kwargs["id_video"]))
         return videos
-    except Exception as e:
-        print(e)
+    except DisplayedException as e:
+        raise JSONRPCDispatchException(code=403, message=e.__str__())
+    except:
         raise JSONRPCDispatchException(code=403, message="Комментарии не найдены.")

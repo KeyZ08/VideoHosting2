@@ -19,9 +19,9 @@ def get_signature(file, type):
     }
 
     video_signature = {
-        "1A 45 DF A3": "webm",
         "66 74 79 70 4D 53 4E 56": "mp4",
         "66 74 79 70 69 73 6F 6D": "mp4",
+        "66 74 79 70 6D 70 34 32": "mp4",
     }
     if type == "video":
         signature = video_signature
@@ -94,7 +94,7 @@ def check_file(file):
         supported_types = ["jpg", "png", "jpeg"]
         max_size = 1024 * 1024  # 1MB
     elif target == "video":
-        supported_types = ["mp4", "webm"]
+        supported_types = ["mp4"]
         max_size = 1024 * 1024 * 1024  # 1GB
     else:
         raise DisplayedException("Неизвестный target.")
