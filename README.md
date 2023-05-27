@@ -6,4 +6,8 @@
 + VK Cloud как хранилище файлов 
 + Yandex Cloud как виртуальная машина для хостинга с использованием Docker
 + БД SQLite
-+ Json-RPC для внешнего api
++ Json-RPC для внешнего [API](./API.md)
+
+###### Остальной API можно посмотреть [здесь](./Internal API.md)
+
+
