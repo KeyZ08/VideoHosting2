@@ -8,6 +8,6 @@
 + БД SQLite
 + Json-RPC для внешнего [API](./API.md)
 
-###### Остальной API можно посмотреть [здесь](./Internal API.md)
+###### Остальной API можно посмотреть [здесь](./Internal_API.md)
 
 
