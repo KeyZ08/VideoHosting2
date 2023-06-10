@@ -4,7 +4,7 @@
 
 + Django в качестве основы 
 + VK Cloud как хранилище файлов 
-+ Yandex Cloud как виртуальная машина для хостинга с использованием Docker
++ ~~Yandex Cloud~~ VK Cloud как виртуальная машина для хостинга с использованием Docker
 + БД SQLite
 + Json-RPC для внешнего [API](./API.md)
 
